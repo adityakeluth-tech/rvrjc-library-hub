@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import SideNav from "@/components/SideNav";
 import BooksGrid from "@/components/BooksGrid";
 import AnalyticsDashboard from "@/components/AnalyticsDashboard";
+import CollegeBanner from "@/components/CollegeBanner";
 
 const categories = ["All", "Computer Science", "Mathematics", "Physics", "Engineering", "Literature"];
 
@@ -20,6 +21,7 @@ const Index = () => {
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
 
+        <CollegeBanner />
         <main className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-8 py-4">
           {activeSection === "books" && (
             <div className="animate-fade-in">
