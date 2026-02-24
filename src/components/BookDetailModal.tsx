@@ -11,72 +11,66 @@ const BookDetailModal = ({ book, onClose }: BookDetailModalProps) => {
   if (!book) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
       {/* Overlay */}
-      <div className="absolute inset-0 bg-foreground/40 backdrop-blur-sm" onClick={onClose} />
+      <div className="absolute inset-0 bg-foreground/30 backdrop-blur-md" onClick={onClose} />
 
-      {/* Panel */}
-      <div className="relative bg-card rounded-xl shadow-2xl border max-w-lg w-full max-h-[90vh] overflow-y-auto animate-fade-in">
+      {/* Panel - iOS sheet style */}
+      <div className="relative bg-card rounded-t-3xl sm:rounded-3xl shadow-2xl border border-border/30 w-full sm:max-w-md max-h-[85vh] overflow-y-auto animate-fade-in">
+        {/* Handle bar */}
+        <div className="flex justify-center pt-3 pb-1 sm:hidden">
+          <div className="w-10 h-1 rounded-full bg-muted-foreground/30" />
+        </div>
+
         {/* Close */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 p-1.5 rounded-full hover:bg-muted transition-colors z-10"
+          className="absolute top-4 right-4 p-1.5 rounded-full bg-muted/80 hover:bg-muted transition-colors z-10"
         >
-          <X className="w-5 h-5" />
+          <X className="w-4 h-4" />
         </button>
 
         {/* Cover */}
-        <div
-          className={`h-52 bg-gradient-to-br ${book.coverColor} flex items-center justify-center rounded-t-xl`}
-        >
-          <BookOpen className="w-20 h-20 text-primary-foreground/50" />
+        <div className="h-44 bg-secondary/60 flex items-center justify-center mx-4 mt-3 rounded-2xl">
+          <BookOpen className="w-16 h-16 text-muted-foreground/30" />
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-4">
+        <div className="p-5 space-y-4">
           <div>
-            <h2 className="text-xl font-heading font-bold text-card-foreground">{book.title}</h2>
-            <p className="text-sm text-muted-foreground font-body mt-1">by {book.author}</p>
+            <h2 className="text-lg font-bold text-card-foreground">{book.title}</h2>
+            <p className="text-sm text-muted-foreground mt-0.5">by {book.author}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 text-sm font-body">
-            <div>
-              <span className="text-muted-foreground text-xs">Publisher</span>
-              <p className="font-medium text-card-foreground">{book.publisher}</p>
-            </div>
-            <div>
-              <span className="text-muted-foreground text-xs">ISBN</span>
-              <p className="font-medium text-card-foreground">{book.isbn}</p>
-            </div>
-            <div>
-              <span className="text-muted-foreground text-xs">Category</span>
-              <p className="font-medium text-card-foreground">{book.category}</p>
-            </div>
-            <div>
-              <span className="text-muted-foreground text-xs">Price</span>
-              <p className="font-medium text-card-foreground">₹{book.price}</p>
-            </div>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { label: "Publisher", value: book.publisher },
+              { label: "ISBN", value: book.isbn },
+              { label: "Category", value: book.category },
+              { label: "Price", value: `₹${book.price}` },
+            ].map((item) => (
+              <div key={item.label} className="bg-muted/50 rounded-xl p-2.5">
+                <span className="text-[10px] text-muted-foreground uppercase tracking-wider">{item.label}</span>
+                <p className="text-xs font-medium text-card-foreground mt-0.5">{item.value}</p>
+              </div>
+            ))}
           </div>
 
-          <div>
-            <span className="text-muted-foreground text-xs font-body">Status</span>
-            <p
-              className={`text-sm font-semibold font-body ${
-                book.available ? "text-accent" : "text-destructive"
-              }`}
-            >
+          <div className="bg-muted/50 rounded-xl p-2.5">
+            <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Status</span>
+            <p className={`text-xs font-semibold mt-0.5 ${book.available ? "text-primary" : "text-destructive"}`}>
               {book.available ? "Available" : "Currently Issued"}
             </p>
           </div>
 
           <div>
-            <span className="text-muted-foreground text-xs font-body">Description</span>
-            <p className="text-sm text-card-foreground font-body mt-1 leading-relaxed">
+            <span className="text-[10px] text-muted-foreground uppercase tracking-wider">Description</span>
+            <p className="text-xs text-card-foreground mt-1 leading-relaxed">
               {book.description}
             </p>
           </div>
 
-          <Button className="w-full font-body" disabled={!book.available}>
+          <Button className="w-full rounded-2xl h-11 font-medium" disabled={!book.available}>
             {book.available ? "Issue This Book" : "Not Available"}
           </Button>
         </div>
