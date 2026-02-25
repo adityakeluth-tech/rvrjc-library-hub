@@ -2,18 +2,18 @@ import collegeLogo from "@/assets/college-logo.jpg";
 
 const CollegeBanner = () => {
   return (
-    <div className="relative overflow-hidden rounded-2xl mx-4 md:mx-6 lg:mx-8 mt-4 mb-2">
+    <div className="relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-accent/60" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_50%,hsl(42_70%_50%/0.15),transparent_60%)]" />
 
-      <div className="relative flex items-center gap-4 md:gap-6 px-4 md:px-6 py-4">
+      <div className="relative flex items-center gap-4 md:gap-6 px-5 md:px-8 py-4">
         {/* Logo */}
-        <div className="shrink-0 w-14 h-14 md:w-[72px] md:h-[72px] rounded-2xl overflow-hidden bg-white/90 p-1.5 shadow-lg ring-2 ring-white/30">
+        <div className="shrink-0 w-14 h-14 md:w-[72px] md:h-[72px] rounded-lg overflow-hidden bg-white/90 p-1.5 shadow-lg ring-2 ring-white/30">
           <img
             src={collegeLogo}
             alt="RVR & JC College of Engineering Logo"
-            className="w-full h-full object-contain rounded-xl"
+            className="w-full h-full object-contain rounded-md"
           />
         </div>
 
@@ -32,7 +32,7 @@ const CollegeBanner = () => {
 
         {/* Decorative element */}
         <div className="hidden md:flex shrink-0 items-center gap-2">
-          <div className="px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm border border-white/20 text-[10px] font-semibold text-primary-foreground/90">
+          <div className="px-3 py-1 rounded-md bg-white/15 backdrop-blur-sm border border-white/20 text-[10px] font-semibold text-primary-foreground/90">
             AUTONOMOUS
           </div>
         </div>
