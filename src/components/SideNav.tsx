@@ -1,5 +1,5 @@
 import {
-  BookOpen, Newspaper, BookMarked, User, Info, Home, Pen,
+  BookOpen, Newspaper, BookMarked, User, Info, Home,
 } from "lucide-react";
 
 interface SideNavProps {
@@ -8,8 +8,8 @@ interface SideNavProps {
 }
 
 const navItems = [
-  { id: "home", icon: Home, label: "Menu" },
-  { id: "books", icon: Pen, label: "Books" },
+  { id: "home", icon: Home, label: "Home" },
+  { id: "books", icon: BookOpen, label: "Books" },
   { id: "updates", icon: Newspaper, label: "Updates" },
   { id: "issued", icon: BookMarked, label: "Issued" },
   { id: "profile", icon: User, label: "Profile" },
@@ -18,14 +18,14 @@ const navItems = [
 
 const SideNav = ({ activeSection, onSectionChange }: SideNavProps) => {
   return (
-    <aside className="hidden lg:flex flex-col items-center w-20 shrink-0 py-6 gap-1 bg-sidebar border-r border-sidebar-border">
+    <aside className="hidden lg:flex flex-col items-center justify-center w-20 shrink-0 gap-1 bg-sidebar border-r border-sidebar-border">
       {navItems.map((item) => {
         const isActive = activeSection === item.id;
         return (
           <button
             key={item.id}
             onClick={() => onSectionChange(item.id)}
-            className={`relative flex flex-col items-center justify-center w-14 h-14 rounded-2xl transition-all duration-200 group ${
+            className={`relative flex flex-col items-center justify-center w-14 h-14 rounded-lg transition-all duration-200 group ${
               isActive
                 ? "bg-primary text-primary-foreground shadow-md"
                 : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
