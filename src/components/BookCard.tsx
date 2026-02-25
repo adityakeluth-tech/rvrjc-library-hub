@@ -16,8 +16,11 @@ const BookCard = ({ book, onClick, index }: BookCardProps) => {
     >
       {/* Cover */}
       <div className="relative h-36 bg-secondary/80 flex items-center justify-center overflow-hidden rounded-t-2xl">
-        <BookOpen className="w-10 h-10 text-muted-foreground/40 group-hover:scale-110 transition-transform duration-300" />
-        {/* Availability badge */}
+        {book.coverImage ? (
+          <img src={book.coverImage} alt={book.title} className="w-full h-full object-cover" />
+        ) : (
+          <BookOpen className="w-10 h-10 text-muted-foreground/40 group-hover:scale-110 transition-transform duration-300" />
+        )}
         <span
           className={`absolute top-2 right-2 text-[9px] font-semibold px-2 py-0.5 rounded-full backdrop-blur-sm ${
             book.available

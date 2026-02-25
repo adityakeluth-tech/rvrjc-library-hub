@@ -1,6 +1,5 @@
 import {
-  BookOpen, BarChart3, Newspaper, BookMarked, User, Info,
-  Phone, LogOut, Home, Pen,
+  BookOpen, Newspaper, BookMarked, User, Info, Home, Pen,
 } from "lucide-react";
 
 interface SideNavProps {
@@ -11,12 +10,10 @@ interface SideNavProps {
 const navItems = [
   { id: "home", icon: Home, label: "Menu" },
   { id: "books", icon: Pen, label: "Books" },
-  { id: "analytics", icon: BarChart3, label: "Stats" },
   { id: "updates", icon: Newspaper, label: "Updates" },
   { id: "issued", icon: BookMarked, label: "Issued" },
   { id: "profile", icon: User, label: "Profile" },
   { id: "about", icon: Info, label: "About" },
-  { id: "contact", icon: Phone, label: "Contact" },
 ];
 
 const SideNav = ({ activeSection, onSectionChange }: SideNavProps) => {
@@ -40,16 +37,6 @@ const SideNav = ({ activeSection, onSectionChange }: SideNavProps) => {
           </button>
         );
       })}
-
-      <div className="flex-1" />
-
-      <button
-        className="flex flex-col items-center justify-center w-14 h-14 rounded-2xl text-destructive hover:bg-destructive/10 transition-colors"
-        title="Logout"
-      >
-        <LogOut className="w-5 h-5" />
-        <span className="text-[9px] font-medium mt-0.5">Logout</span>
-      </button>
     </aside>
   );
 };
