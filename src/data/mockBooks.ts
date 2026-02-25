@@ -1,3 +1,9 @@
+import cover1 from "@/assets/covers/cover-1.jpg";
+import cover2 from "@/assets/covers/cover-2.jpg";
+import cover3 from "@/assets/covers/cover-3.jpg";
+import cover4 from "@/assets/covers/cover-4.jpg";
+import cover5 from "@/assets/covers/cover-5.jpg";
+
 export interface Book {
   id: number;
   title: string;
@@ -9,6 +15,7 @@ export interface Book {
   description: string;
   available: boolean;
   coverColor: string;
+  coverImage?: string;
 }
 
 const categories = ["Computer Science", "Mathematics", "Physics", "Literature", "Engineering", "Economics", "History", "Chemistry"];
@@ -33,6 +40,8 @@ const titles = [
   "Deep Learning", "AI: A Modern Approach", "Gödel, Escher, Bach"
 ];
 
+const covers = [cover1, cover2, cover3, cover4, cover5];
+
 const colors = [
   "from-primary/80 to-primary/40",
   "from-accent/80 to-accent/40",
@@ -52,4 +61,5 @@ export const mockBooks: Book[] = titles.map((title, i) => ({
   description: `A comprehensive guide to ${title.toLowerCase()} covering fundamental concepts, practical applications, and advanced topics. Widely used in universities and recommended for undergraduate and postgraduate students.`,
   available: Math.random() > 0.3,
   coverColor: colors[i % colors.length],
+  coverImage: covers[i % covers.length],
 }));

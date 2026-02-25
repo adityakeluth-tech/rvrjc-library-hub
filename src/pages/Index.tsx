@@ -1,34 +1,49 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Header from "@/components/Header";
 import SideNav from "@/components/SideNav";
 import BooksGrid from "@/components/BooksGrid";
-import AnalyticsDashboard from "@/components/AnalyticsDashboard";
 import CollegeBanner from "@/components/CollegeBanner";
+import GenreCards from "@/components/GenreCards";
+import UpdatesSection from "@/components/UpdatesSection";
+import IssuedSection from "@/components/IssuedSection";
+import ProfileSection from "@/components/ProfileSection";
+import AboutSection from "@/components/AboutSection";
 
 const categories = ["All", "Computer Science", "Mathematics", "Physics", "Engineering", "Literature"];
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeSection, setActiveSection] = useState("books");
+  const [activeSection, setActiveSection] = useState("home");
   const [activeCategory, setActiveCategory] = useState("All");
+  const booksRef = useRef<HTMLDivElement>(null);
+
+  const handleExplore = (category: string) => {
+    setActiveCategory(category);
+    setActiveSection("books");
+    setTimeout(() => booksRef.current?.scrollIntoView({ behavior: "smooth" }), 100);
+  };
 
   return (
     <div className="flex min-h-screen">
-      {/* Left Sidebar */}
       <SideNav activeSection={activeSection} onSectionChange={setActiveSection} />
 
-      {/* Main area */}
       <div className="flex-1 flex flex-col overflow-hidden">
         <Header searchQuery={searchQuery} onSearchChange={setSearchQuery} />
-
         <CollegeBanner />
-        <main className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-8 py-4">
-          {activeSection === "books" && (
-            <div className="animate-fade-in">
-              {/* Title */}
-              <h2 className="text-xl font-bold text-foreground mb-4">Library</h2>
 
-              {/* Category pills */}
+        <main className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-8 py-4">
+          {/* Home */}
+          {activeSection === "home" && (
+            <div className="animate-fade-in space-y-5">
+              <h2 className="text-xl font-bold text-foreground">Browse by Genre</h2>
+              <GenreCards onExplore={handleExplore} />
+            </div>
+          )}
+
+          {/* Books */}
+          {activeSection === "books" && (
+            <div className="animate-fade-in" ref={booksRef}>
+              <h2 className="text-xl font-bold text-foreground mb-4">Library</h2>
               <div className="flex gap-2 mb-5 overflow-x-auto pb-1 scrollbar-none">
                 {categories.map((cat) => (
                   <button
@@ -44,28 +59,14 @@ const Index = () => {
                   </button>
                 ))}
               </div>
-
               <BooksGrid searchQuery={searchQuery} categoryFilter={activeCategory} />
             </div>
           )}
 
-          {activeSection === "analytics" && <AnalyticsDashboard />}
-
-          {activeSection !== "books" && activeSection !== "analytics" && (
-            <div className="flex items-center justify-center h-full animate-fade-in">
-              <div className="text-center space-y-3">
-                <div className="w-16 h-16 rounded-2xl bg-accent mx-auto flex items-center justify-center">
-                  <span className="text-2xl">📚</span>
-                </div>
-                <h3 className="text-lg font-semibold text-foreground capitalize">
-                  {activeSection.replace("-", " ")}
-                </h3>
-                <p className="text-sm text-muted-foreground max-w-xs">
-                  This section is coming soon. Connect a backend to enable full functionality.
-                </p>
-              </div>
-            </div>
-          )}
+          {activeSection === "updates" && <UpdatesSection />}
+          {activeSection === "issued" && <IssuedSection />}
+          {activeSection === "profile" && <ProfileSection />}
+          {activeSection === "about" && <AboutSection />}
         </main>
       </div>
     </div>
