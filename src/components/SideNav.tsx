@@ -25,7 +25,7 @@ const SideNav = ({ activeSection, onSectionChange }: SideNavProps) => {
           <button
             key={item.id}
             onClick={() => onSectionChange(item.id)}
-            className={`relative flex flex-col items-center justify-center w-14 h-14 rounded-lg transition-all duration-200 group ${
+            className={`relative flex flex-col items-center justify-center w-14 h-14 rounded-md transition-all duration-200 group ${
               isActive
                 ? "bg-primary text-primary-foreground shadow-md"
                 : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
