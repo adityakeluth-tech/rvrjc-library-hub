@@ -128,10 +128,10 @@
   }
 
   .ios-card {
-    @apply bg-card rounded-lg border border-border/30 shadow-sm;
+    @apply bg-card rounded-md border border-border/30 shadow-sm;
   }
 
   .ios-card-minimal {
-    @apply bg-card rounded-md border border-border/30 shadow-sm;
+    @apply bg-card rounded border border-border/30 shadow-sm;
   }
 }
