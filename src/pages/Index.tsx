@@ -1,5 +1,4 @@
 import { useRef, useState } from "react";
-import Header from "@/components/Header";
 import SideNav from "@/components/SideNav";
 import BooksGrid from "@/components/BooksGrid";
 import CollegeBanner from "@/components/CollegeBanner";
@@ -26,17 +25,18 @@ const Index = () => {
   };
 
   return (
-    <div className="flex min-h-screen">
-      <SideNav activeSection={activeSection} onSectionChange={setActiveSection} />
+    <div className="flex flex-col min-h-screen">
+      {/* Banner spans full width above everything */}
+      <CollegeBanner />
 
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <CollegeBanner />
+      <div className="flex flex-1 overflow-hidden">
+        <SideNav activeSection={activeSection} onSectionChange={setActiveSection} />
 
         <main className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-8 py-3">
           {/* Home */}
           {activeSection === "home" && (
             <div className="animate-fade-in space-y-3">
-              <h2 className="text-lg font-bold text-foreground">Browse by Genre</h2>
+              <h2 className="text-lg font-bold text-foreground">Browse by Department</h2>
               <GenreCards onExplore={handleExplore} />
             </div>
           )}

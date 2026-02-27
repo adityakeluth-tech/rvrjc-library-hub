@@ -32,17 +32,17 @@ const GenreCards = ({ onExplore }: GenreCardsProps) => {
   const [showMore, setShowMore] = useState(false);
 
   const GenreCard = ({ genre }: { genre: typeof mainGenres[0] }) => (
-    <div className="ios-card-minimal p-3 flex flex-col items-start gap-1.5 card-hover">
-      <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-primary/10 text-primary">
-        <genre.icon className="w-4 h-4" />
+    <div className="ios-card-minimal p-4 flex flex-col items-start gap-2 card-hover">
+      <div className="w-10 h-10 rounded-md flex items-center justify-center bg-primary/10 text-primary">
+        <genre.icon className="w-5 h-5" />
       </div>
       <div>
-        <h3 className="text-xs font-semibold text-card-foreground">{genre.label}</h3>
-        <p className="text-[9px] text-muted-foreground leading-snug mt-0.5">{genre.desc}</p>
+        <h3 className="text-sm font-semibold text-card-foreground">{genre.label}</h3>
+        <p className="text-[10px] text-muted-foreground leading-snug mt-0.5">{genre.desc}</p>
       </div>
       <button
         onClick={() => onExplore(genre.id)}
-        className="mt-auto text-[9px] font-semibold text-primary hover:underline"
+        className="mt-auto text-[10px] font-semibold text-primary hover:underline"
       >
         Explore →
       </button>
@@ -51,23 +51,15 @@ const GenreCards = ({ onExplore }: GenreCardsProps) => {
 
   return (
     <div className="space-y-3">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
         {mainGenres.map((genre) => (
           <GenreCard key={genre.label} genre={genre} />
         ))}
       </div>
 
-      {/* More toggle */}
-      <button
-        onClick={() => setShowMore(!showMore)}
-        className="flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
-      >
-        {showMore ? "Less" : "More"} {showMore ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-      </button>
-
       {showMore && (
-        <div className="animate-fade-in space-y-3">
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+        <div className="animate-fade-in">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
             {moreGenres.map((genre) => (
               <GenreCard key={genre.label} genre={genre} />
             ))}
@@ -77,16 +69,24 @@ const GenreCards = ({ onExplore }: GenreCardsProps) => {
 
       {/* College photos */}
       <div className="grid grid-cols-3 gap-2 mt-2">
-        <div className="rounded-lg overflow-hidden h-28">
-          <img src={collegeCampus} alt="College Campus" className="w-full h-full object-cover" />
+        <div className="rounded-md overflow-hidden h-32">
+          <img src={collegeCampus} alt="RVR JC College Campus" className="w-full h-full object-cover" />
         </div>
-        <div className="rounded-lg overflow-hidden h-28">
-          <img src={collegeLibrary} alt="Library" className="w-full h-full object-cover" />
+        <div className="rounded-md overflow-hidden h-32">
+          <img src={collegeLibrary} alt="RVR JC College" className="w-full h-full object-cover" />
         </div>
-        <div className="rounded-lg overflow-hidden h-28">
-          <img src={collegeBooks} alt="Books" className="w-full h-full object-cover" />
+        <div className="rounded-md overflow-hidden h-32">
+          <img src={collegeBooks} alt="RVR JC College Event" className="w-full h-full object-cover" />
         </div>
       </div>
+
+      {/* More/Less toggle at the bottom */}
+      <button
+        onClick={() => setShowMore(!showMore)}
+        className="flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+      >
+        {showMore ? "Less" : "More"} {showMore ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+      </button>
     </div>
   );
 };

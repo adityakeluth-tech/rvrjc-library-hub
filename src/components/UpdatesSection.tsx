@@ -37,13 +37,13 @@ const UpdatesSection = () => {
 
       {/* Upcoming Books */}
       <div>
-        <h3 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-2">
+        <h3 className="text-base font-bold text-foreground mb-3 flex items-center gap-2 font-body tracking-wide uppercase">
           <BookOpen className="w-4 h-4 text-primary" /> Upcoming Books
         </h3>
         <div className="grid sm:grid-cols-2 gap-3">
           {upcomingBooks.map((book) => (
             <div key={book.title} className="ios-card p-4 flex items-start gap-3">
-              <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center shrink-0">
                 <BookOpen className="w-5 h-5 text-primary" />
               </div>
               <div className="flex-1 min-w-0">
@@ -53,7 +53,7 @@ const UpdatesSection = () => {
                   <span className="text-[9px] text-muted-foreground flex items-center gap-1">
                     <Calendar className="w-3 h-3" /> {book.date}
                   </span>
-                  <span className="text-[9px] font-semibold px-2 py-0.5 rounded-full bg-accent text-accent-foreground">
+                  <span className="text-[9px] font-semibold px-2 py-0.5 rounded-md bg-accent text-accent-foreground">
                     {book.tag}
                   </span>
                 </div>
