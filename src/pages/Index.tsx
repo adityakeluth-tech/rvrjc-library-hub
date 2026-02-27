@@ -25,12 +25,14 @@ const Index = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen">
-      {/* Banner spans full width above everything */}
-      <CollegeBanner />
+    <div className="flex min-h-screen">
+      {/* Sidebar - fixed left */}
+      <SideNav activeSection={activeSection} onSectionChange={setActiveSection} />
 
-      <div className="flex flex-1 overflow-hidden">
-        <SideNav activeSection={activeSection} onSectionChange={setActiveSection} />
+      {/* Right content area */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Banner spans only the right side */}
+        <CollegeBanner />
 
         <main className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-8 py-3">
           {/* Home */}
@@ -52,7 +54,7 @@ const Index = () => {
                     placeholder="Search books..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-8 h-8 rounded-md bg-muted/60 border-0 text-xs"
+                    className="pl-8 h-8 rounded-sm bg-muted/60 border-0 text-xs"
                   />
                 </div>
               </div>
@@ -61,7 +63,7 @@ const Index = () => {
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`shrink-0 px-3 py-1 rounded-md text-[10px] font-medium transition-all duration-200 border ${
+                    className={`shrink-0 px-3 py-1 rounded-sm text-[10px] font-medium transition-all duration-200 border ${
                       activeCategory === cat
                         ? "bg-primary text-primary-foreground border-primary shadow-sm"
                         : "bg-card text-muted-foreground border-border hover:border-primary/30 hover:text-foreground"
