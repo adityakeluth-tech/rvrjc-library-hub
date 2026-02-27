@@ -1,11 +1,11 @@
-import { ExternalLink, MapPin, Award, BookOpen, Users } from "lucide-react";
+import { ExternalLink, MapPin, Award, BookOpen, Users, GraduationCap, Building2 } from "lucide-react";
 import collegeLogo from "@/assets/college-logo.jpg";
 import collegeCampus from "@/assets/college-campus.jpg";
 import collegeLibrary from "@/assets/college-library.jpg";
 
 const AboutSection = () => {
   return (
-    <div className="space-y-4 animate-fade-in">
+    <div className="space-y-4 animate-fade-in max-w-4xl">
       <h2 className="text-xl font-bold text-foreground font-heading">About the Library</h2>
 
       {/* College Card */}
@@ -15,18 +15,58 @@ const AboutSection = () => {
         </div>
         <div className="flex-1">
           <h3 className="text-base font-bold text-card-foreground font-heading">R.V.R & J.C College of Engineering</h3>
-          <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
-            Established in 1985, R.V.R & J.C College of Engineering is an autonomous institution affiliated to Acharya Nagarjuna University. The college is accredited with NAAC 'A+' Grade and is recognized as one of the premier engineering institutions in Andhra Pradesh.
+          <p className="text-[11px] text-muted-foreground mt-1 font-medium">
+            (Autonomous) &bull; Affiliated to Acharya Nagarjuna University
           </p>
+          <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed">
+            Established in 1985, R.V.R & J.C College of Engineering is an autonomous institution sponsored by Nagarjuna Education Society. The college is accredited with NAAC 'A+' Grade and is recognized as one of the premier engineering institutions in Andhra Pradesh. EAPCET Code: RVJC.
+          </p>
+        </div>
+      </div>
+
+      {/* Accreditations & Affiliations */}
+      <div className="ios-card-minimal p-5 space-y-3">
+        <h3 className="text-sm font-semibold text-card-foreground flex items-center gap-2">
+          <GraduationCap className="w-4 h-4 text-primary" />
+          Accreditations & Affiliations
+        </h3>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {[
+            { label: "NAAC", value: "A+ Grade" },
+            { label: "AICTE", value: "Approved" },
+            { label: "NBA", value: "Accredited" },
+            { label: "ARIIA", value: "Ranked" },
+          ].map((item) => (
+            <div key={item.label} className="bg-muted/50 rounded-sm p-3 text-center">
+              <p className="text-sm font-bold text-primary">{item.label}</p>
+              <p className="text-[10px] text-muted-foreground mt-0.5">{item.value}</p>
+            </div>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+          <div className="bg-muted/50 rounded-sm p-3 flex items-center gap-2">
+            <Building2 className="w-4 h-4 text-primary shrink-0" />
+            <div>
+              <p className="text-xs font-semibold text-card-foreground">Affiliated to</p>
+              <p className="text-[10px] text-muted-foreground">Acharya Nagarjuna University</p>
+            </div>
+          </div>
+          <div className="bg-muted/50 rounded-sm p-3 flex items-center gap-2">
+            <GraduationCap className="w-4 h-4 text-primary shrink-0" />
+            <div>
+              <p className="text-xs font-semibold text-card-foreground">Sponsored by</p>
+              <p className="text-[10px] text-muted-foreground">Nagarjuna Education Society</p>
+            </div>
+          </div>
         </div>
       </div>
 
       {/* College Photos */}
       <div className="grid grid-cols-2 gap-2">
-        <div className="rounded-sm overflow-hidden h-44">
+        <div className="rounded-sm overflow-hidden h-48">
           <img src={collegeCampus} alt="College Campus" className="w-full h-full object-cover" />
         </div>
-        <div className="rounded-sm overflow-hidden h-44">
+        <div className="rounded-sm overflow-hidden h-48">
           <img src={collegeLibrary} alt="Library Interior" className="w-full h-full object-cover" />
         </div>
       </div>
