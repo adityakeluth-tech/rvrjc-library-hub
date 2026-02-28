@@ -24,78 +24,64 @@ const bottomItems = [
 const SideNav = ({ activeSection, onSectionChange, isOpen, onClose }: SideNavProps) => {
   const handleNav = (id: string) => {
     onSectionChange(id);
-    onClose();
   };
 
+  if (!isOpen) return null;
+
   return (
-    <>
-      {/* Overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 transition-opacity"
-          onClick={onClose}
-        />
-      )}
-
-      {/* Sidebar */}
-      <aside
-        className={`fixed top-0 left-0 h-full z-50 w-20 bg-sidebar border-r border-sidebar-border flex flex-col items-center py-4 transition-transform duration-300 ${
-          isOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+    <aside className="fixed top-0 left-0 h-full z-50 w-20 bg-sidebar border-r border-sidebar-border flex flex-col items-center py-4">
+      {/* Close button */}
+      <button
+        onClick={onClose}
+        className="mb-4 w-10 h-10 rounded-md flex items-center justify-center text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
       >
-        {/* Close button */}
-        <button
-          onClick={onClose}
-          className="mb-4 w-10 h-10 rounded-sm flex items-center justify-center text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
-        >
-          <X className="w-5 h-5" />
-        </button>
+        <X className="w-5 h-5" />
+      </button>
 
-        {/* Top nav items */}
-        <div className="flex flex-col items-center gap-1 flex-1">
-          {topItems.map((item) => {
-            const isActive = activeSection === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleNav(item.id)}
-                className={`flex flex-col items-center justify-center w-14 h-14 rounded-sm transition-all duration-200 ${
-                  isActive
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                }`}
-                title={item.label}
-              >
-                <item.icon className="w-5 h-5" />
-                <span className="text-[9px] font-medium mt-0.5 leading-none">{item.label}</span>
-              </button>
-            );
-          })}
-        </div>
+      {/* Top nav items */}
+      <div className="flex flex-col items-center gap-1 flex-1">
+        {topItems.map((item) => {
+          const isActive = activeSection === item.id;
+          return (
+            <button
+              key={item.id}
+              onClick={() => handleNav(item.id)}
+              className={`flex flex-col items-center justify-center w-14 h-14 rounded-md transition-all duration-200 ${
+                isActive
+                  ? "bg-primary text-primary-foreground shadow-md"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              }`}
+              title={item.label}
+            >
+              <item.icon className="w-5 h-5" />
+              <span className="text-[9px] font-medium mt-0.5 leading-none">{item.label}</span>
+            </button>
+          );
+        })}
+      </div>
 
-        {/* About at the very bottom */}
-        <div className="mt-auto pt-6">
-          {bottomItems.map((item) => {
-            const isActive = activeSection === item.id;
-            return (
-              <button
-                key={item.id}
-                onClick={() => handleNav(item.id)}
-                className={`flex flex-col items-center justify-center w-14 h-14 rounded-sm transition-all duration-200 ${
-                  isActive
-                    ? "bg-primary text-primary-foreground shadow-md"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-                }`}
-                title={item.label}
-              >
-                <item.icon className="w-5 h-5" />
-                <span className="text-[9px] font-medium mt-0.5 leading-none">{item.label}</span>
-              </button>
-            );
-          })}
-        </div>
-      </aside>
-    </>
+      {/* About at the very bottom */}
+      <div className="mt-auto pt-6">
+        {bottomItems.map((item) => {
+          const isActive = activeSection === item.id;
+          return (
+            <button
+              key={item.id}
+              onClick={() => handleNav(item.id)}
+              className={`flex flex-col items-center justify-center w-14 h-14 rounded-md transition-all duration-200 ${
+                isActive
+                  ? "bg-primary text-primary-foreground shadow-md"
+                  : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+              }`}
+              title={item.label}
+            >
+              <item.icon className="w-5 h-5" />
+              <span className="text-[9px] font-medium mt-0.5 leading-none">{item.label}</span>
+            </button>
+          );
+        })}
+      </div>
+    </aside>
   );
 };
 

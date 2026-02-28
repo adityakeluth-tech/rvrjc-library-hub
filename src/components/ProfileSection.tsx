@@ -13,17 +13,18 @@ const ProfileSection = () => {
   };
 
   return (
-    <div className="space-y-5 animate-fade-in max-w-lg">
+    <div className="space-y-5 animate-fade-in max-w-3xl mx-auto">
       <h2 className="text-xl font-bold text-foreground font-heading">My Profile</h2>
 
       {/* Avatar & Name */}
-      <div className="ios-card p-5 flex items-center gap-4">
-        <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center">
-          <User className="w-8 h-8 text-primary" />
+      <div className="ios-card p-6 flex items-center gap-5">
+        <div className="w-20 h-20 rounded-md bg-primary/10 flex items-center justify-center">
+          <User className="w-10 h-10 text-primary" />
         </div>
         <div>
           <h3 className="text-lg font-bold text-card-foreground">{student.name}</h3>
-          <p className="text-xs text-muted-foreground">{student.branch}</p>
+          <p className="text-sm text-muted-foreground">{student.branch}</p>
+          <p className="text-xs text-muted-foreground mt-1">{student.email}</p>
         </div>
       </div>
 
@@ -36,12 +37,12 @@ const ProfileSection = () => {
           { icon: Mail, label: "Email", value: student.email },
           { icon: BookOpen, label: "Books Issued", value: String(student.booksIssued) },
         ].map((item) => (
-          <div key={item.label} className="flex items-center gap-3 px-4 py-3">
-            <div className="w-8 h-8 rounded-lg bg-muted flex items-center justify-center shrink-0">
-              <item.icon className="w-4 h-4 text-muted-foreground" />
+          <div key={item.label} className="flex items-center gap-4 px-5 py-4">
+            <div className="w-10 h-10 rounded-md bg-muted flex items-center justify-center shrink-0">
+              <item.icon className="w-5 h-5 text-muted-foreground" />
             </div>
             <div className="flex-1 min-w-0">
-              <p className="text-[10px] text-muted-foreground uppercase tracking-wider">{item.label}</p>
+              <p className="text-[11px] text-muted-foreground uppercase tracking-wider">{item.label}</p>
               <p className="text-sm font-medium text-card-foreground">{item.value}</p>
             </div>
           </div>
@@ -49,9 +50,9 @@ const ProfileSection = () => {
       </div>
 
       {student.finesDue > 0 && (
-        <div className="ios-card p-4 border-destructive/30 bg-destructive/5">
-          <p className="text-xs font-semibold text-destructive">Outstanding Fine: ₹{student.finesDue}</p>
-          <p className="text-[10px] text-muted-foreground mt-0.5">Please clear your fines at the library counter.</p>
+        <div className="ios-card p-5 border-destructive/30 bg-destructive/5">
+          <p className="text-sm font-semibold text-destructive">Outstanding Fine: ₹{student.finesDue}</p>
+          <p className="text-xs text-muted-foreground mt-1">Please clear your fines at the library counter.</p>
         </div>
       )}
     </div>
