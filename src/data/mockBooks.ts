@@ -26,7 +26,10 @@ const authors = [
   "Abraham Silberschatz", "Dennis Ritchie", "Bjarne Stroustrup", "Joshua Bloch",
   "Herbert Schildt", "Eric Matthes", "Jon Kleinberg", "Sedgewick & Wayne",
   "Peter Norvig", "Sheldon Ross", "Gilbert Strang", "David Patterson",
-  "Andrew Ng", "Christopher Bishop", "Ian Goodfellow", "Stuart Russell", "Douglas Hofstadter"
+  "Andrew Ng", "Christopher Bishop", "Ian Goodfellow", "Stuart Russell", "Douglas Hofstadter",
+  "Behrouz Forouzan", "Ramez Elmasri", "B.C. Punmia", "R.K. Rajput", "S.S. Rattan",
+  "Morris Mano", "Pressman", "Galvin", "Hamming", "Knuth",
+  "Linus Torvalds", "Venugopal", "Balagurusamy", "Yashavant Kanetkar", "Schildt"
 ];
 
 const titles = [
@@ -37,7 +40,13 @@ const titles = [
   "Python Crash Course", "Algorithm Design", "Algorithms",
   "Artificial Intelligence", "Probability & Statistics", "Linear Algebra",
   "Computer Organization", "Machine Learning Yearning", "Pattern Recognition",
-  "Deep Learning", "AI: A Modern Approach", "Gödel, Escher, Bach"
+  "Deep Learning", "AI: A Modern Approach", "Gödel, Escher, Bach",
+  "Data Communications & Networking", "Database Systems", "Strength of Materials",
+  "Thermal Engineering", "Theory of Machines",
+  "Digital Logic Design", "Software Engineering", "Operating System Concepts",
+  "Coding Theory", "The Art of Programming",
+  "Linux Kernel Development", "Data Structures with C", "Programming in ANSI C",
+  "Let Us C", "Java: A Beginner's Guide"
 ];
 
 const covers = [cover1, cover2, cover3, cover4, cover5];
