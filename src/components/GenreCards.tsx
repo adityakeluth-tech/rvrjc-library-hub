@@ -28,11 +28,10 @@ const mainGenres = [
 ];
 
 const moreGenres = [
-  { id: "Literature", label: "Humanities", desc: "Literature, History", img: deptCse },
-  { id: "All", label: "Sports", desc: "Fitness, Athletics", img: deptMech },
-  { id: "All", label: "Cultural", desc: "Arts, Cultural Studies", img: deptDs },
-  { id: "All", label: "Music", desc: "Theory, Instruments", img: deptIt },
-  { id: "Physics", label: "Sciences", desc: "Physics, Chemistry", img: deptCivil },
+  { id: "Literature", label: "Humanities", desc: "Literature, History", img: deptCivil },
+  { id: "Chemistry", label: "Chemistry", desc: "Organic, Inorganic, Physical", img: deptEce },
+  { id: "Physics", label: "Physics", desc: "Mechanics, Optics, Quantum", img: deptMath },
+  { id: "Economics", label: "Economics", desc: "Micro, Macro, Finance", img: deptDs },
 ];
 
 const GenreCards = ({ onExplore }: GenreCardsProps) => {
@@ -41,7 +40,7 @@ const GenreCards = ({ onExplore }: GenreCardsProps) => {
   const GenreCard = ({ genre }: { genre: typeof mainGenres[0] }) => (
     <div
       onClick={() => onExplore(genre.id)}
-      className="relative overflow-hidden rounded-md cursor-pointer group h-40 md:h-48"
+      className="relative overflow-hidden rounded-sm cursor-pointer group h-40 md:h-48"
     >
       <img src={genre.img} alt={genre.label} className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
@@ -60,6 +59,14 @@ const GenreCards = ({ onExplore }: GenreCardsProps) => {
         ))}
       </div>
 
+      {/* More/Less toggle - above photos */}
+      <button
+        onClick={() => setShowMore(!showMore)}
+        className="flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+      >
+        {showMore ? "Less" : "More"} {showMore ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+      </button>
+
       {showMore && (
         <div className="animate-fade-in">
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
@@ -69,14 +76,6 @@ const GenreCards = ({ onExplore }: GenreCardsProps) => {
           </div>
         </div>
       )}
-
-      {/* More/Less toggle */}
-      <button
-        onClick={() => setShowMore(!showMore)}
-        className="flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
-      >
-        {showMore ? "Less" : "More"} {showMore ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-      </button>
 
       {/* College photos */}
       <div className="grid grid-cols-3 gap-2">

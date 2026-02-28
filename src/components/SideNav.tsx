@@ -1,6 +1,7 @@
 import {
-  BookOpen, Newspaper, BookMarked, User, Info, Home, X,
+  BookOpen, Newspaper, BookMarked, User, Info, Home, X, LogOut,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface SideNavProps {
   activeSection: string;
@@ -22,8 +23,13 @@ const bottomItems = [
 ];
 
 const SideNav = ({ activeSection, onSectionChange, isOpen, onClose }: SideNavProps) => {
+  const navigate = useNavigate();
   const handleNav = (id: string) => {
     onSectionChange(id);
+  };
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
   };
 
   if (!isOpen) return null;
@@ -60,8 +66,8 @@ const SideNav = ({ activeSection, onSectionChange, isOpen, onClose }: SideNavPro
         })}
       </div>
 
-      {/* About at the very bottom */}
-      <div className="mt-auto pt-6">
+      {/* About + Logout at the very bottom */}
+      <div className="mt-auto pt-6 flex flex-col items-center gap-1">
         {bottomItems.map((item) => {
           const isActive = activeSection === item.id;
           return (
@@ -80,6 +86,14 @@ const SideNav = ({ activeSection, onSectionChange, isOpen, onClose }: SideNavPro
             </button>
           );
         })}
+        <button
+          onClick={handleLogout}
+          className="flex flex-col items-center justify-center w-14 h-14 rounded-md text-sidebar-foreground hover:bg-destructive/10 hover:text-destructive transition-all duration-200"
+          title="Logout"
+        >
+          <LogOut className="w-5 h-5" />
+          <span className="text-[9px] font-medium mt-0.5 leading-none">Logout</span>
+        </button>
       </div>
     </aside>
   );
