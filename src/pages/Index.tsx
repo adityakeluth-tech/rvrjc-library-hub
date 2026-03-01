@@ -7,6 +7,9 @@ import UpdatesSection from "@/components/UpdatesSection";
 import IssuedSection from "@/components/IssuedSection";
 import ProfileSection from "@/components/ProfileSection";
 import AboutSection from "@/components/AboutSection";
+import AdminAddBook from "@/components/AdminAddBook";
+import AdminManageUpdates from "@/components/AdminManageUpdates";
+import AdminManageIssued from "@/components/AdminManageIssued";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
@@ -19,6 +22,10 @@ const Index = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const booksRef = useRef<HTMLDivElement>(null);
 
+  const userStr = localStorage.getItem("user");
+  const user = userStr ? JSON.parse(userStr) : null;
+  const isAdmin = user?.role === "admin";
+
   const handleExplore = (category: string) => {
     setActiveCategory(category);
     setActiveSection("books");
@@ -27,7 +34,6 @@ const Index = () => {
 
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar - slides in, pushes content */}
       <SideNav
         activeSection={activeSection}
         onSectionChange={setActiveSection}
@@ -35,14 +41,10 @@ const Index = () => {
         onClose={() => setSidebarOpen(false)}
       />
 
-      {/* Main area */}
       <div className={`flex-1 flex flex-col min-h-screen transition-all duration-300 ${sidebarOpen ? "ml-20" : "ml-0"}`}>
-        {/* Banner spans full width */}
         <CollegeBanner onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
 
-        {/* Main content */}
         <main className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-8 py-3">
-          {/* Home */}
           {activeSection === "home" && (
             <div className="animate-fade-in space-y-3">
               <h2 className="text-lg font-bold text-foreground">Browse by Department</h2>
@@ -50,7 +52,6 @@ const Index = () => {
             </div>
           )}
 
-          {/* Books */}
           {activeSection === "books" && (
             <div className="animate-fade-in" ref={booksRef}>
               <div className="flex items-center justify-between mb-3">
@@ -88,6 +89,11 @@ const Index = () => {
           {activeSection === "issued" && <IssuedSection />}
           {activeSection === "profile" && <ProfileSection />}
           {activeSection === "about" && <AboutSection />}
+
+          {/* Admin sections */}
+          {activeSection === "add-book" && isAdmin && <AdminAddBook />}
+          {activeSection === "manage-updates" && isAdmin && <AdminManageUpdates />}
+          {activeSection === "manage-issued" && isAdmin && <AdminManageIssued />}
         </main>
       </div>
     </div>

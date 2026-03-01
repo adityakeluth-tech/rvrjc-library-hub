@@ -1,5 +1,5 @@
 import {
-  BookOpen, Newspaper, BookMarked, User, Info, Home, X, LogOut,
+  BookOpen, Newspaper, BookMarked, User, Info, Home, X, LogOut, PlusCircle, Settings,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -10,12 +10,21 @@ interface SideNavProps {
   onClose: () => void;
 }
 
-const topItems = [
+const studentItems = [
   { id: "home", icon: Home, label: "Home" },
   { id: "books", icon: BookOpen, label: "Books" },
   { id: "updates", icon: Newspaper, label: "Updates" },
   { id: "issued", icon: BookMarked, label: "Issued" },
   { id: "profile", icon: User, label: "Profile" },
+];
+
+const adminItems = [
+  { id: "home", icon: Home, label: "Home" },
+  { id: "books", icon: BookOpen, label: "Books" },
+  { id: "add-book", icon: PlusCircle, label: "Add Book" },
+  { id: "manage-updates", icon: Newspaper, label: "Updates" },
+  { id: "manage-issued", icon: BookMarked, label: "Issued" },
+  { id: "settings", icon: Settings, label: "Settings" },
 ];
 
 const bottomItems = [
@@ -24,6 +33,11 @@ const bottomItems = [
 
 const SideNav = ({ activeSection, onSectionChange, isOpen, onClose }: SideNavProps) => {
   const navigate = useNavigate();
+  const userStr = localStorage.getItem("user");
+  const user = userStr ? JSON.parse(userStr) : null;
+  const isAdmin = user?.role === "admin";
+  const topItems = isAdmin ? adminItems : studentItems;
+
   const handleNav = (id: string) => {
     onSectionChange(id);
   };
@@ -36,7 +50,6 @@ const SideNav = ({ activeSection, onSectionChange, isOpen, onClose }: SideNavPro
 
   return (
     <aside className="fixed top-0 left-0 h-full z-50 w-20 bg-sidebar border-r border-sidebar-border flex flex-col items-center py-4">
-      {/* Close button */}
       <button
         onClick={onClose}
         className="mb-4 w-10 h-10 rounded-md flex items-center justify-center text-sidebar-foreground hover:bg-sidebar-accent transition-colors"
@@ -44,7 +57,6 @@ const SideNav = ({ activeSection, onSectionChange, isOpen, onClose }: SideNavPro
         <X className="w-5 h-5" />
       </button>
 
-      {/* Top nav items */}
       <div className="flex flex-col items-center gap-1 flex-1">
         {topItems.map((item) => {
           const isActive = activeSection === item.id;
@@ -66,7 +78,6 @@ const SideNav = ({ activeSection, onSectionChange, isOpen, onClose }: SideNavPro
         })}
       </div>
 
-      {/* About + Logout at the very bottom */}
       <div className="mt-auto pt-6 flex flex-col items-center gap-1">
         {bottomItems.map((item) => {
           const isActive = activeSection === item.id;
