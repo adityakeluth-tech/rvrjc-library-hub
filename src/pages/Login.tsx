@@ -4,15 +4,28 @@ import { LogIn, User, Shield } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import collegeLogo from "@/assets/college-logo.jpg";
 
-const STUDENTS: Record<string, string> = {
-  y23cd001: "y23cd001",
-  y23cd002: "y23cd002",
-  y23cd003: "y23cd003",
-  y23cd004: "y23cd004",
-  y23cd005: "y23cd005",
+// Generate student IDs for multiple branches
+const branches: Record<string, string> = {
+  cd: "Data Science",
+  cs: "CSE",
+  io: "IoT",
+  ai: "AIML",
+  ec: "ECE",
+  ee: "EEE",
+  me: "Mechanical",
+  ce: "Civil",
+  it: "IT",
 };
 
-const ADMIN = { id: "admin", password: "admin123" };
+const STUDENTS: Record<string, string> = {};
+Object.keys(branches).forEach((code) => {
+  for (let i = 1; i <= 50; i++) {
+    const id = `y23${code}${String(i).padStart(3, "0")}`;
+    STUDENTS[id] = id; // password same as id
+  }
+});
+
+const ADMIN = { id: "admin@123", password: "123456789" };
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,7 +42,10 @@ const Login = () => {
 
     if (role === "student") {
       if (STUDENTS[uid] && STUDENTS[uid] === pwd) {
-        localStorage.setItem("user", JSON.stringify({ role: "student", id: uid }));
+        // Determine branch from ID
+        const branchCode = uid.substring(3, 5);
+        const branchName = branches[branchCode] || "Unknown";
+        localStorage.setItem("user", JSON.stringify({ role: "student", id: uid, branch: branchName }));
         navigate("/");
       } else {
         setError("Invalid College ID or Password");
@@ -87,7 +103,7 @@ const Login = () => {
             <Input
               value={userId}
               onChange={(e) => setUserId(e.target.value)}
-              placeholder={role === "student" ? "e.g. Y23CD001" : "admin"}
+              placeholder={role === "student" ? "e.g. Y23CD001" : "admin@123"}
               className="h-9 rounded-sm text-sm"
               required
             />
