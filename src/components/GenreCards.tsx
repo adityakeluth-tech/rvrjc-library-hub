@@ -6,23 +6,23 @@ interface GenreCardsProps {
 }
 
 const mainGenres = [
-  { id: "Computer Science", label: "CSE", desc: "Data Structures, Algorithms, OS", icon: Cpu },
-  { id: "Computer Science", label: "Data Science", desc: "ML, Analytics, Big Data", icon: Database },
-  { id: "Computer Science", label: "IT", desc: "Networks, Web, Cloud", icon: Globe },
-  { id: "Computer Science", label: "AIML", desc: "Neural Networks, NLP, Vision", icon: Cpu },
-  { id: "Computer Science", label: "IoT", desc: "Sensors, Embedded, Edge", icon: Radio },
-  { id: "Engineering", label: "Mechanical", desc: "Thermodynamics, Design", icon: Settings },
-  { id: "Engineering", label: "ECE", desc: "Circuits, VLSI, Embedded", icon: Radio },
-  { id: "Engineering", label: "EEE", desc: "Power Systems, Machines", icon: Zap },
-  { id: "Physics", label: "Civil", desc: "Structures, Materials", icon: Building2 },
-  { id: "Mathematics", label: "Maths", desc: "Calculus, Linear Algebra", icon: Calculator },
+  { id: "Computer Science", label: "CSE", desc: "Data Structures, Algorithms, OS", icon: Cpu, accent: "from-blue-500/20 to-cyan-500/20" },
+  { id: "Computer Science", label: "Data Science", desc: "ML, Analytics, Big Data", icon: Database, accent: "from-violet-500/20 to-purple-500/20" },
+  { id: "Computer Science", label: "IT", desc: "Networks, Web, Cloud", icon: Globe, accent: "from-emerald-500/20 to-teal-500/20" },
+  { id: "Computer Science", label: "AIML", desc: "Neural Networks, NLP, Vision", icon: Cpu, accent: "from-rose-500/20 to-pink-500/20" },
+  { id: "Computer Science", label: "IoT", desc: "Sensors, Embedded, Edge", icon: Radio, accent: "from-amber-500/20 to-orange-500/20" },
+  { id: "Engineering", label: "Mechanical", desc: "Thermodynamics, Design", icon: Settings, accent: "from-slate-500/20 to-zinc-500/20" },
+  { id: "Engineering", label: "ECE", desc: "Circuits, VLSI, Embedded", icon: Radio, accent: "from-indigo-500/20 to-blue-500/20" },
+  { id: "Engineering", label: "EEE", desc: "Power Systems, Machines", icon: Zap, accent: "from-yellow-500/20 to-amber-500/20" },
+  { id: "Physics", label: "Civil", desc: "Structures, Materials", icon: Building2, accent: "from-stone-500/20 to-neutral-500/20" },
+  { id: "Mathematics", label: "Maths", desc: "Calculus, Linear Algebra", icon: Calculator, accent: "from-sky-500/20 to-blue-500/20" },
 ];
 
 const moreGenres = [
-  { id: "Literature", label: "Humanities", desc: "Literature, History", icon: BookOpen },
-  { id: "Chemistry", label: "Chemistry", desc: "Organic, Inorganic, Physical", icon: FlaskConical },
-  { id: "Physics", label: "Physics", desc: "Mechanics, Optics, Quantum", icon: Atom },
-  { id: "Economics", label: "Economics", desc: "Micro, Macro, Finance", icon: TrendingUp },
+  { id: "Literature", label: "Humanities", desc: "Literature, History", icon: BookOpen, accent: "from-fuchsia-500/20 to-pink-500/20" },
+  { id: "Chemistry", label: "Chemistry", desc: "Organic, Inorganic, Physical", icon: FlaskConical, accent: "from-lime-500/20 to-green-500/20" },
+  { id: "Physics", label: "Physics", desc: "Mechanics, Optics, Quantum", icon: Atom, accent: "from-cyan-500/20 to-teal-500/20" },
+  { id: "Economics", label: "Economics", desc: "Micro, Macro, Finance", icon: TrendingUp, accent: "from-orange-500/20 to-red-500/20" },
 ];
 
 const GenreCards = ({ onExplore }: GenreCardsProps) => {
@@ -31,21 +31,19 @@ const GenreCards = ({ onExplore }: GenreCardsProps) => {
   const GenreCard = ({ genre }: { genre: typeof mainGenres[0] }) => (
     <div
       onClick={() => onExplore(genre.id)}
-      className="ios-card p-5 cursor-pointer group hover:shadow-md transition-all duration-200 flex flex-col items-start gap-3 h-36"
+      className={`group cursor-pointer rounded-xl border border-border bg-gradient-to-br ${genre.accent} backdrop-blur-sm p-5 transition-all duration-300 hover:scale-[1.03] hover:shadow-lg hover:border-primary/30`}
     >
-      <div className="w-10 h-10 rounded-md bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-        <genre.icon className="w-5 h-5 text-primary" />
+      <div className="w-12 h-12 rounded-lg bg-card/80 shadow-sm flex items-center justify-center mb-3 group-hover:shadow-md transition-shadow">
+        <genre.icon className="w-6 h-6 text-primary" />
       </div>
-      <div>
-        <h3 className="text-sm font-bold text-card-foreground">{genre.label}</h3>
-        <p className="text-[10px] text-muted-foreground leading-snug mt-0.5">{genre.desc}</p>
-      </div>
+      <h3 className="text-sm font-bold text-card-foreground">{genre.label}</h3>
+      <p className="text-[11px] text-muted-foreground leading-relaxed mt-1">{genre.desc}</p>
     </div>
   );
 
   return (
-    <div className="space-y-3">
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
         {mainGenres.map((genre) => (
           <GenreCard key={genre.label} genre={genre} />
         ))}
@@ -60,7 +58,7 @@ const GenreCards = ({ onExplore }: GenreCardsProps) => {
 
       {showMore && (
         <div className="animate-fade-in">
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {moreGenres.map((genre) => (
               <GenreCard key={genre.label} genre={genre} />
             ))}

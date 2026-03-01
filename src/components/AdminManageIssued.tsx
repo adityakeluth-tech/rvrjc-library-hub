@@ -1,8 +1,8 @@
-import { BookMarked, Calendar, AlertTriangle, Clock, Search } from "lucide-react";
+import { BookMarked, Calendar, AlertTriangle, Clock, Search, RotateCcw } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 
-const allIssuedBooks = [
+const initialIssuedBooks = [
   { student: "Y23CD001", title: "Introduction to Algorithms", author: "Thomas H. Cormen", issuedDate: "2026-02-10", returnDate: "2026-03-12", returned: false },
   { student: "Y23CS012", title: "Clean Code", author: "Robert C. Martin", issuedDate: "2026-02-01", returnDate: "2026-03-03", returned: false },
   { student: "Y23AI005", title: "Deep Learning", author: "Ian Goodfellow", issuedDate: "2026-02-15", returnDate: "2026-03-17", returned: false },
@@ -24,8 +24,13 @@ const getDaysRemaining = (returnDate: string) => {
 
 const AdminManageIssued = () => {
   const [search, setSearch] = useState("");
+  const [books, setBooks] = useState(initialIssuedBooks);
 
-  const filtered = allIssuedBooks.filter(
+  const handleReturn = (index: number) => {
+    setBooks((prev) => prev.map((b, i) => i === index ? { ...b, returned: true } : b));
+  };
+
+  const filtered = books.filter(
     (b) => b.student.toLowerCase().includes(search.toLowerCase()) || b.title.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -46,6 +51,7 @@ const AdminManageIssued = () => {
 
       <div className="space-y-3">
         {filtered.map((book, i) => {
+          const originalIndex = books.indexOf(book);
           const daysLeft = getDaysRemaining(book.returnDate);
           const overdue = !book.returned && daysLeft < 0;
           const urgent = !book.returned && daysLeft >= 0 && daysLeft <= 5;
@@ -83,6 +89,15 @@ const AdminManageIssued = () => {
                   </div>
                 )}
               </div>
+              {/* Admin return action */}
+              {!book.returned && (
+                <button
+                  onClick={() => handleReturn(originalIndex)}
+                  className="shrink-0 flex items-center gap-1 text-[10px] font-semibold text-primary hover:underline"
+                >
+                  <RotateCcw className="w-3 h-3" /> Return
+                </button>
+              )}
             </div>
           );
         })}
