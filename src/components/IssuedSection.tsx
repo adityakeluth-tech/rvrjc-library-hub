@@ -16,8 +16,7 @@ const formatDate = (dateStr: string) => {
 const getDaysRemaining = (returnDate: string) => {
   const now = new Date();
   const ret = new Date(returnDate);
-  const diff = Math.ceil((ret.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
-  return diff;
+  return Math.ceil((ret.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
 };
 
 const IssuedSection = () => {
@@ -55,7 +54,6 @@ const IssuedSection = () => {
                   </span>
                 </div>
 
-                {/* Countdown */}
                 <div className="mt-2">
                   {overdue ? (
                     <span className="inline-flex items-center gap-1 text-[10px] font-bold text-destructive bg-destructive/10 px-2 py-0.5 rounded-sm">
@@ -69,11 +67,8 @@ const IssuedSection = () => {
                 </div>
               </div>
 
-              {/* Actions */}
+              {/* Reminder only - no return button */}
               <div className="flex flex-col items-end gap-2 shrink-0">
-                <button className="text-[10px] font-semibold text-primary hover:underline">
-                  Return
-                </button>
                 <button
                   onClick={() => toggleReminder(book.title)}
                   className={`p-1.5 rounded-md transition-colors ${reminderOn ? "bg-primary/10 text-primary" : "bg-muted text-muted-foreground hover:text-primary"}`}

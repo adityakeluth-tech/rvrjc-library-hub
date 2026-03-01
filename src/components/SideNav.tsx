@@ -1,5 +1,5 @@
 import {
-  BookOpen, Newspaper, BookMarked, User, Info, Home, X, LogOut, PlusCircle, Settings,
+  BookOpen, Newspaper, BookMarked, User, Info, Home, X, LogOut, PlusCircle, Users, BarChart3,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
@@ -19,12 +19,11 @@ const studentItems = [
 ];
 
 const adminItems = [
-  { id: "home", icon: Home, label: "Home" },
-  { id: "books", icon: BookOpen, label: "Books" },
   { id: "add-book", icon: PlusCircle, label: "Add Book" },
   { id: "manage-updates", icon: Newspaper, label: "Updates" },
   { id: "manage-issued", icon: BookMarked, label: "Issued" },
-  { id: "settings", icon: Settings, label: "Settings" },
+  { id: "manage-students", icon: Users, label: "Users" },
+  { id: "analytics", icon: BarChart3, label: "Analytics" },
 ];
 
 const bottomItems = [

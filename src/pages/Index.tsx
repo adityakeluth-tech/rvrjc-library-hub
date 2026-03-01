@@ -10,6 +10,8 @@ import AboutSection from "@/components/AboutSection";
 import AdminAddBook from "@/components/AdminAddBook";
 import AdminManageUpdates from "@/components/AdminManageUpdates";
 import AdminManageIssued from "@/components/AdminManageIssued";
+import AdminManageStudents from "@/components/AdminManageStudents";
+import AnalyticsDashboard from "@/components/AnalyticsDashboard";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 
@@ -17,7 +19,11 @@ const categories = ["All", "Computer Science", "Mathematics", "Physics", "Engine
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState(() => {
+    const userStr = localStorage.getItem("user");
+    const user = userStr ? JSON.parse(userStr) : null;
+    return user?.role === "admin" ? "add-book" : "home";
+  });
   const [activeCategory, setActiveCategory] = useState("All");
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const booksRef = useRef<HTMLDivElement>(null);
@@ -45,14 +51,25 @@ const Index = () => {
         <CollegeBanner onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
 
         <main className="flex-1 overflow-y-auto px-4 md:px-6 lg:px-8 py-3">
-          {activeSection === "home" && (
-            <div className="animate-fade-in space-y-3">
+          {/* Student sections */}
+          {activeSection === "home" && !isAdmin && (
+            <div className="animate-fade-in space-y-6">
               <h2 className="text-lg font-bold text-foreground">Browse by Department</h2>
               <GenreCards onExplore={handleExplore} />
+
+              <div className="pt-2">
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-lg font-bold text-foreground">Popular Books</h2>
+                  <button onClick={() => setActiveSection("books")} className="text-xs font-semibold text-primary hover:underline">
+                    View All →
+                  </button>
+                </div>
+                <BooksGrid searchQuery="" categoryFilter="All" />
+              </div>
             </div>
           )}
 
-          {activeSection === "books" && (
+          {activeSection === "books" && !isAdmin && (
             <div className="animate-fade-in" ref={booksRef}>
               <div className="flex items-center justify-between mb-3">
                 <h2 className="text-lg font-bold text-foreground">Library</h2>
@@ -85,15 +102,17 @@ const Index = () => {
             </div>
           )}
 
-          {activeSection === "updates" && <UpdatesSection />}
-          {activeSection === "issued" && <IssuedSection />}
-          {activeSection === "profile" && <ProfileSection />}
+          {activeSection === "updates" && !isAdmin && <UpdatesSection />}
+          {activeSection === "issued" && !isAdmin && <IssuedSection />}
+          {activeSection === "profile" && !isAdmin && <ProfileSection />}
           {activeSection === "about" && <AboutSection />}
 
           {/* Admin sections */}
           {activeSection === "add-book" && isAdmin && <AdminAddBook />}
           {activeSection === "manage-updates" && isAdmin && <AdminManageUpdates />}
           {activeSection === "manage-issued" && isAdmin && <AdminManageIssued />}
+          {activeSection === "manage-students" && isAdmin && <AdminManageStudents />}
+          {activeSection === "analytics" && isAdmin && <AnalyticsDashboard />}
         </main>
       </div>
     </div>
