@@ -15,6 +15,10 @@ const BookDetailModal = ({ book, onClose }: BookDetailModalProps) => {
 
   if (!book) return null;
 
+  const userStr = localStorage.getItem("user");
+  const user = userStr ? JSON.parse(userStr) : null;
+  const isAdmin = user?.role === "admin";
+
   const handleIssueBook = () => {
     issueBook(book);
     setIssueConfirmed(true);
