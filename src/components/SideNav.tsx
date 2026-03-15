@@ -36,6 +36,7 @@ const SideNav = ({ activeSection, onSectionChange, isOpen, onClose }: SideNavPro
   const navigate = useNavigate();
   const userStr = localStorage.getItem("user");
   const user = userStr ? JSON.parse(userStr) : null;
+  const isAdmin = user?.role === "admin";
   const topItems = isAdmin ? adminItems : studentItems;
   const showBottomItems = !isAdmin;
 
