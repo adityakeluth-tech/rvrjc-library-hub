@@ -24,7 +24,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState(() => {
     const userStr = localStorage.getItem("user");
     const user = userStr ? JSON.parse(userStr) : null;
-    return user?.role === "admin" ? "add-book" : "home";
+    return user?.role === "admin" ? "manage-updates" : "home";
   });
   const [activeCategory, setActiveCategory] = useState("All");
   const [sidebarOpen, setSidebarOpen] = useState(false);
