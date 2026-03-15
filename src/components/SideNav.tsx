@@ -81,7 +81,7 @@ const SideNav = ({ activeSection, onSectionChange, isOpen, onClose }: SideNavPro
       </div>
 
       <div className="mt-auto pt-6 flex flex-col items-center gap-1">
-        {bottomItems.map((item) => {
+        {showBottomItems && bottomItems.map((item) => {
           const isActive = activeSection === item.id;
           return (
             <button
