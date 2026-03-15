@@ -11,10 +11,12 @@ interface BookDetailModalProps {
 
 const BookDetailModal = ({ book, onClose }: BookDetailModalProps) => {
   const [issueConfirmed, setIssueConfirmed] = useState(false);
+  const { issueBook } = useIssuedBooks();
 
   if (!book) return null;
 
   const handleIssueBook = () => {
+    issueBook(book);
     setIssueConfirmed(true);
     setTimeout(() => {
       setIssueConfirmed(false);
