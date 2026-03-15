@@ -35,6 +35,7 @@ const Index = () => {
   const handleExplore = (category: string) => {
     setActiveCategory(category);
     setActiveSection("books");
+    setSidebarOpen(true);
     setTimeout(() => booksRef.current?.scrollIntoView({ behavior: "smooth" }), 100);
   };
 
@@ -58,12 +59,7 @@ const Index = () => {
               <GenreCards onExplore={handleExplore} />
 
               <div className="pt-2">
-                <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-lg font-bold text-foreground">Popular Books</h2>
-                  <button onClick={() => setActiveSection("books")} className="text-xs font-semibold text-primary hover:underline">
-                    View All →
-                  </button>
-                </div>
+                <h2 className="text-lg font-bold text-foreground mb-3">Popular Books</h2>
                 <BooksGrid searchQuery="" categoryFilter="All" />
               </div>
             </div>
@@ -73,13 +69,13 @@ const Index = () => {
             <div className="animate-fade-in" ref={booksRef}>
               <div className="flex items-center justify-between mb-3">
                 <h2 className="text-lg font-bold text-foreground">Library</h2>
-                <div className="relative w-48">
-                  <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
+                <div className="relative w-72">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                   <Input
-                    placeholder="Search books..."
+                    placeholder="Search by title, author, or category..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="pl-8 h-8 rounded-sm bg-muted/60 border-0 text-xs"
+                    className="pl-9 h-10 rounded-md bg-muted/60 border border-border text-sm"
                   />
                 </div>
               </div>

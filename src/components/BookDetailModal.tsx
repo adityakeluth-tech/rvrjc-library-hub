@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Book } from "@/data/mockBooks";
 import { X, BookOpen, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useIssuedBooks } from "@/context/IssuedBooksContext";
 
 interface BookDetailModalProps {
   book: Book | null;
@@ -10,10 +11,12 @@ interface BookDetailModalProps {
 
 const BookDetailModal = ({ book, onClose }: BookDetailModalProps) => {
   const [issueConfirmed, setIssueConfirmed] = useState(false);
+  const { issueBook } = useIssuedBooks();
 
   if (!book) return null;
 
   const handleIssueBook = () => {
+    issueBook(book);
     setIssueConfirmed(true);
     setTimeout(() => {
       setIssueConfirmed(false);
@@ -54,7 +57,6 @@ const BookDetailModal = ({ book, onClose }: BookDetailModalProps) => {
               { label: "Publisher", value: book.publisher },
               { label: "ISBN", value: book.isbn },
               { label: "Category", value: book.category },
-              { label: "Price", value: `₹${book.price}` },
             ].map((item) => (
               <div key={item.label} className="bg-muted/50 rounded-md p-2">
                 <span className="text-[9px] text-muted-foreground uppercase tracking-wider">{item.label}</span>
