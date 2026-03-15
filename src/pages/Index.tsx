@@ -59,12 +59,7 @@ const Index = () => {
               <GenreCards onExplore={handleExplore} />
 
               <div className="pt-2">
-                <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-lg font-bold text-foreground">Popular Books</h2>
-                  <button onClick={() => setActiveSection("books")} className="text-xs font-semibold text-primary hover:underline">
-                    View All →
-                  </button>
-                </div>
+                <h2 className="text-lg font-bold text-foreground mb-3">Popular Books</h2>
                 <BooksGrid searchQuery="" categoryFilter="All" />
               </div>
             </div>
