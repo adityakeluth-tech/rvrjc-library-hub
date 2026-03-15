@@ -19,11 +19,13 @@ const studentItems = [
 ];
 
 const adminItems = [
-  { id: "add-book", icon: PlusCircle, label: "Add Book" },
   { id: "manage-updates", icon: Newspaper, label: "Updates" },
-  { id: "manage-issued", icon: BookMarked, label: "Issued" },
+  { id: "add-book", icon: PlusCircle, label: "Add Book" },
+  { id: "upload-books", icon: BookOpen, label: "Upcoming" },
   { id: "manage-students", icon: Users, label: "Users" },
   { id: "analytics", icon: BarChart3, label: "Analytics" },
+  { id: "admin-profile", icon: User, label: "Profile" },
+  { id: "edit-about", icon: Info, label: "About" },
 ];
 
 const bottomItems = [

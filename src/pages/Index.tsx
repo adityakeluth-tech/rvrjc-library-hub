@@ -108,9 +108,11 @@ const Index = () => {
           {/* Admin sections */}
           {activeSection === "add-book" && isAdmin && <AdminAddBook />}
           {activeSection === "manage-updates" && isAdmin && <AdminManageUpdates />}
-          {activeSection === "manage-issued" && isAdmin && <AdminManageIssued />}
+          {activeSection === "upload-books" && isAdmin && <AdminUploadBooks />}
           {activeSection === "manage-students" && isAdmin && <AdminManageStudents />}
           {activeSection === "analytics" && isAdmin && <AnalyticsDashboard />}
+          {activeSection === "admin-profile" && isAdmin && <AdminProfile />}
+          {activeSection === "edit-about" && isAdmin && <AdminEditAbout />}
         </main>
       </div>
     </div>
