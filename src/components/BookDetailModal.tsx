@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Book } from "@/data/mockBooks";
 import { X, BookOpen, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useIssuedBooks } from "@/context/IssuedBooksContext";
 
 interface BookDetailModalProps {
   book: Book | null;
