@@ -25,7 +25,7 @@ Object.keys(branches).forEach((code) => {
   }
 });
 
-const ADMIN = { id: "admin@123", password: "123456789" };
+const ADMIN = { id: "admin@123", password: "12345789" };
 
 const Login = () => {
   const navigate = useNavigate();

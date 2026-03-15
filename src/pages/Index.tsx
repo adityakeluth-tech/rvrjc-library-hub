@@ -9,8 +9,10 @@ import ProfileSection from "@/components/ProfileSection";
 import AboutSection from "@/components/AboutSection";
 import AdminAddBook from "@/components/AdminAddBook";
 import AdminManageUpdates from "@/components/AdminManageUpdates";
-import AdminManageIssued from "@/components/AdminManageIssued";
 import AdminManageStudents from "@/components/AdminManageStudents";
+import AdminUploadBooks from "@/components/AdminUploadBooks";
+import AdminProfile from "@/components/AdminProfile";
+import AdminEditAbout from "@/components/AdminEditAbout";
 import AnalyticsDashboard from "@/components/AnalyticsDashboard";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -22,7 +24,7 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState(() => {
     const userStr = localStorage.getItem("user");
     const user = userStr ? JSON.parse(userStr) : null;
-    return user?.role === "admin" ? "add-book" : "home";
+    return user?.role === "admin" ? "manage-updates" : "home";
   });
   const [activeCategory, setActiveCategory] = useState("All");
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -106,9 +108,11 @@ const Index = () => {
           {/* Admin sections */}
           {activeSection === "add-book" && isAdmin && <AdminAddBook />}
           {activeSection === "manage-updates" && isAdmin && <AdminManageUpdates />}
-          {activeSection === "manage-issued" && isAdmin && <AdminManageIssued />}
+          {activeSection === "upload-books" && isAdmin && <AdminUploadBooks />}
           {activeSection === "manage-students" && isAdmin && <AdminManageStudents />}
           {activeSection === "analytics" && isAdmin && <AnalyticsDashboard />}
+          {activeSection === "admin-profile" && isAdmin && <AdminProfile />}
+          {activeSection === "edit-about" && isAdmin && <AdminEditAbout />}
         </main>
       </div>
     </div>
