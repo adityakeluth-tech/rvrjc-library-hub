@@ -35,6 +35,7 @@ const Index = () => {
   const handleExplore = (category: string) => {
     setActiveCategory(category);
     setActiveSection("books");
+    setSidebarOpen(true);
     setTimeout(() => booksRef.current?.scrollIntoView({ behavior: "smooth" }), 100);
   };
 
