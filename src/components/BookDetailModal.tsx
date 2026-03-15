@@ -57,7 +57,6 @@ const BookDetailModal = ({ book, onClose }: BookDetailModalProps) => {
               { label: "Publisher", value: book.publisher },
               { label: "ISBN", value: book.isbn },
               { label: "Category", value: book.category },
-              { label: "Price", value: `₹${book.price}` },
             ].map((item) => (
               <div key={item.label} className="bg-muted/50 rounded-md p-2">
                 <span className="text-[9px] text-muted-foreground uppercase tracking-wider">{item.label}</span>
