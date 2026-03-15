@@ -81,8 +81,8 @@ const BookDetailModal = ({ book, onClose }: BookDetailModalProps) => {
             <p className="text-[11px] text-card-foreground mt-1 leading-relaxed">{book.description}</p>
           </div>
 
-          {/* Issue Book Section */}
-          {book.available && (
+          {/* Issue Book Section - only for students */}
+          {book.available && !isAdmin && (
             <div className="border-t border-border pt-3 space-y-2">
               {issueConfirmed ? (
                 <div className="flex flex-col items-center py-6 gap-2 animate-fade-in">
